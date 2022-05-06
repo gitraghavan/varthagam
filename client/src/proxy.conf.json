@@ -1,0 +1,7 @@
+{
+    "/oauth": {
+        "target": "http://localhost:2260/",
+        "secure": false,
+        "changeOrigin": false
+    }
+}

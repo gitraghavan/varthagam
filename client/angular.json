@@ -75,7 +75,8 @@
 							"browserTarget": "varthagam:build:production"
 						},
 						"development": {
-							"browserTarget": "varthagam:build:development"
+							"browserTarget": "varthagam:build:development",
+							"proxyConfig": "./src/proxy.conf.json"
 						}
 					},
 					"defaultConfiguration": "development"

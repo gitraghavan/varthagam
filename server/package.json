@@ -1,0 +1,26 @@
+{
+	"name": "server",
+	"version": "1.0.0",
+	"description": "Varthagam backend server",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node index.js",
+		"start:watch": "nodemon index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Raghavan RC",
+	"license": "ISC",
+	"dependencies": {
+		"@koa/cors": "^3.3.0",
+		"crypto": "^1.0.1",
+		"dotenv": "^16.0.0",
+		"jsonwebtoken": "^8.5.1",
+		"koa": "^2.13.4",
+		"koa-body": "^4.2.0",
+		"koa-router": "^10.1.1",
+		"mongodb": "^4.5.0",
+		"mongoose": "^6.3.2",
+		"node-rsa": "^1.1.1"
+	}
+}
