@@ -15,7 +15,7 @@ export class UserAuthService {
     }
 
     userLogin (): any {
-        return this.http.get ('/icici/oauth/v1/initiateicicilogin').pipe (
+        return this.http.get ('/varthagamitrade/oauth/v1/initiateicicilogin').pipe (
             map (() => {
                 return this.cookieService.getLoginCookies ();
             }),

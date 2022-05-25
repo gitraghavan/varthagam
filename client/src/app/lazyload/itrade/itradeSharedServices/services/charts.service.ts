@@ -10,6 +10,6 @@ export class UserDetailsService {
     }
 
     getHistoricalChart () {
-        return this.http.get ('/icici/screener/chart/historicalcharts')
+        return this.http.get ('/varthagamitrade/screener/chart/historicalcharts')
     }
 }

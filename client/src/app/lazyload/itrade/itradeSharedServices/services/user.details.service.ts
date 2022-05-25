@@ -10,10 +10,10 @@ export class UserDetailsService {
     }
 
     getUserDetails () {
-        return this.http.get ('/icici/profile/user/customer/details')
+        return this.http.get ('/varthagamitrade/profile/user/customer/details')
     }
 
     getDematHoldings () {
-        return this.http.get ('/icici/profile/user/customer/dematHoldings')
+        return this.http.get ('/varthagamitrade/profile/user/customer/dematHoldings')
     }
 }

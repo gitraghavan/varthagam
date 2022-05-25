@@ -5,7 +5,7 @@ import profileRoute from './routes/profileRoutes/customer.details.js';
 import screenerRoutes from './routes/screenerRoutes/chart.service.js';
 
 const router = new KoaRouter ({
-    prefix: 'icici'
+    prefix: '/varthagamitrade'
 });
 
 router.use ('/oauth/', authRoute.routes (), authRoute.allowedMethods ());
