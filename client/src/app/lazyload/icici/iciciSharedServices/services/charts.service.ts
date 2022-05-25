@@ -9,11 +9,7 @@ export class UserDetailsService {
         //
     }
 
-    getUserDetails () {
-        return this.http.get ('/icici/profile/user/customer/details')
-    }
-
-    getDematHoldings () {
-        return this.http.get ('/icici/profile/user/customer/dematHoldings')
+    getHistoricalChart () {
+        return this.http.get ('/icici/screener/chart/historicalcharts')
     }
 }

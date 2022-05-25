@@ -1,17 +1,5 @@
 {
-    "/oauth": {
-        "target": "http://localhost:2260/",
-        "secure": false,
-        "changeOrigin": false,
-        "logLevel": "debug"
-    },
-    "/profile": {
-        "target": "http://localhost:2260/",
-        "secure": false,
-        "changeOrigin": false,
-        "logLevel": "debug"
-    },
-    "/screener": {
+    "/icici": {
         "target": "http://localhost:2260/",
         "secure": false,
         "changeOrigin": false,

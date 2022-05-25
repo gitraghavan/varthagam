@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserAuthService } from '../sharedServices/mainSharedServicesIndex';
+import { UserAuthService } from '../../sharedServices/mainSharedServicesIndex';
 
 @Component ({
     selector: 'authLogin',

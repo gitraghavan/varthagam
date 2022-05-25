@@ -17,7 +17,7 @@ export class DashboardResolveService implements Resolve<Observable<any>> {
         // Get Access token and refresh token and then only subscribe to Customer Data and Demat holdings
         return this.uds.getUserDetails ()
             .pipe (
-                concatMap (() => this.uds.getHistoricalChart ())
+                concatMap (() => this.uds.getDematHoldings ())
             )
     }
 }
