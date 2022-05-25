@@ -38,6 +38,7 @@ testem.log
 /client/node_modules
 /server/node_modules
 /server/configs/*.env
+/server/*.pem
 
 # System files
 .DS_Store
