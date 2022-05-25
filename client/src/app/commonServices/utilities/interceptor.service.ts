@@ -15,7 +15,6 @@ export class AuthInterceptorService implements HttpInterceptor {
         if (req.url.includes ('oauth')) {
             return next.handle (req);
         }
-        console.log (environment.production);
         return next.handle (req);
     }
 }

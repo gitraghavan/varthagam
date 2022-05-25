@@ -5,7 +5,7 @@ import { AuthLogin } from './index';
 
 const mainRoutes: Routes = [
 	{ path: 'login', component: AuthLogin },
-	{ path: 'icici', loadChildren: () => import ('./lazyload/icici/icici.app.module').then(m => m.ICICIAppModule) },
+	{ path: 'itrade', loadChildren: () => import ('./lazyload/itrade/itrade.app.module').then(m => m.ItradeAppModule) },
 	{ path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

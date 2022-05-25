@@ -1,16 +1,29 @@
-import UserSession from '../../collections/session.collection.js';
+import UserSessionCollection from '../../collections/session.collection.js';
+import SessionLogsCollection from '../../collections/session.logs.collection.js';
 
-const currentSession = async (d) => {
-    const sessionData = {
-        authId: d.API_Session,
-        sessionId: 123456789,
-        userId: d.user_id
+// Save session only at login
+export default class SessionService {
+    static async createSession (d) {
+        const logData = {
+            tId: d.tidToken,
+            userAgent: d.userAgent,
+            hostName: d.hostName
+        };
+
+        return SessionLogsCollection.findOneAndUpdate ({ tId: d.tidToken }, logData, { new: true, upsert: true });
     };
-    UserSession.findOneAndUpdate ({ userId: d.user_id }, sessionData, { upsert: true }, (err, doc, res) => {
-        if (err) return err;
-        if (doc) return doc;
-        if (res) return res;
-    });
-}
 
-export default currentSession;
+    static async saveSession (d) {
+        const sessionData = {
+            authId: d.API_Session,
+            userId: d.user_id
+        };
+
+        return UserSessionCollection.findOneAndUpdate ({ userId: d.user_id }, sessionData, { new: true, upsert: true });
+    };
+
+    // Update session after login
+    static async updateSession (d) {
+        return UserSessionCollection.findOneAndUpdate ({ userId: d.user_id }, { sessionId: d }, { new: true, upsert: true });
+    };
+}

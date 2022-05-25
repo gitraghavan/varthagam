@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { map } from 'rxjs';
+import { map, catchError } from 'rxjs';
 
 import { CookieAppService } from 'src/app/commonServices/mainCommonServicesIndex';
 
@@ -15,11 +15,13 @@ export class UserAuthService {
     }
 
     userLogin (): any {
-        return this.http.get ('/oauth/v1/initiateicicilogin').pipe (
+        return this.http.get ('/varthagamitrade/oauth/v1/initiateicicilogin').pipe (
             map (() => {
                 return this.cookieService.getLoginCookies ();
+            }),
+            catchError ((err: any) => {
+                return err;
             })
-            // Implement catchError
         );
     }
 }

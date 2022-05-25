@@ -1,7 +1,8 @@
 {
-    "/oauth": {
+    "/varthagamitrade": {
         "target": "http://localhost:2260/",
         "secure": false,
-        "changeOrigin": false
+        "changeOrigin": false,
+        "logLevel": "debug"
     }
 }
