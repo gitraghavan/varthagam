@@ -3,11 +3,15 @@ import MongooseClient from 'mongoose';
 const Schema = MongooseClient.Schema;
 
 const sessionSchema = new Schema ({
+    sessionStartTime: { type: Date, default: Date.now },
+    sessionEndTime: Date,
     authId: String,
-    sessionId: Number,
-    userId: String
+    sessionId: String,
+    userId: String,
+    tId: String,
+    hostName: String
 });
 
-const UserSession = MongooseClient.model ('usersession', sessionSchema);
+const UserSessionCollection = MongooseClient.model ('usersession', sessionSchema);
 
-export default UserSession;
+export default UserSessionCollection;

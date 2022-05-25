@@ -1,1 +1,15 @@
-// Dashboard Stylesheet
+.va-ic-main-wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.va-ic-wrapper-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.va-ic-header-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 8px 16px;
+}
