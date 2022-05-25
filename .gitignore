@@ -37,7 +37,7 @@ testem.log
 /client/.angular
 /client/node_modules
 /server/node_modules
-/server/configs/dev.env
+/server/configs/*.env
 
 # System files
 .DS_Store
