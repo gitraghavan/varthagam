@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 
-import { Observable, concatMap } from 'rxjs';
+import { Observable, forkJoin, map, take } from 'rxjs';
 
-import { UserDetailsService } from '../services/user.details.service';
+import { CustomerDetailsService, CustomerFundsService } from '../index';
 
 @Injectable ({
-    providedIn: 'root'
+    providedIn: 'any'
 })
 export class DashboardResolveService implements Resolve<Observable<any>> {
-    constructor (private uds: UserDetailsService) {
+    constructor (private cds: CustomerDetailsService, private cfs: CustomerFundsService) {
         //
     }
 
     resolve (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        // Get Access token and refresh token and then only subscribe to Customer Data and Demat holdings
-        return this.uds.getUserDetails ()
+        const dematHoldings = this.cds.getDematHoldings ();
+        const customerFunds = this.cfs.getFundsSummary ();
+        
+        return forkJoin ([dematHoldings, customerFunds])
             .pipe (
-                concatMap (() => this.uds.getDematHoldings ())
-            )
-    }
+                map ((d: any) => {
+                    return {
+                        holdings: d[0],
+                        funds: d[1]
+                    };
+                })
+            );
+    }   
 }

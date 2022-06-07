@@ -2,17 +2,55 @@
     <div class="va-ic-wrapper-container">
         <header class="va-ic-header-container">
             <p>Varthagam</p>
-            <p>Rathiya Raghavan</p>
+            <p>My Profile</p>
         </header>
-        <section>
+        <section class="va-ic-dash-main">
+            <article class="va-ic-dash-wrapper">
+                <h1>
+                    <span>Welcome</span><br>
+                    <span>{{ profile.idirect_user_name | titlecase }}</span>
+                </h1>
+                <article class="va-ic-dash-top-details">
+                    <details open>
+                        <summary>Invested</summary>
+                        <p>{{ funds.unallocated_balance | currency: 'INR': 'symbol' : '2.2-2' }}</p>
+                    </details>
+                    <details open>
+                        <summary>P & L</summary>
+                        <p>{{ funds.unallocated_balance | currency: 'INR': 'symbol' : '2.2-2' }}</p>
+                    </details>
+                    <details open>
+                        <summary>Funds</summary>
+                        <p>{{ funds.unallocated_balance | currency: 'INR': 'symbol' : '2.2-2' }}</p>
+                    </details>
+                </article>
+            </article>
+        </section>
+        <section class="va-ic-dash-submain">
+            <h2>Holdings</h2>
+            <article class="va-ic-dash-wrapper va-ic-hld-table" *ngIf="holdingsTitle">
+                <div class="va-ic-table-title">
+                    <p *ngFor="let hldTitle of holdingsTitle">{{ hldTitle }}</p>
+                </div>
+                <div *ngFor="let scrip of holdings">
+                    <p>{{ scrip.stock_code || 'Stock Code' }}</p>
+                    <p>{{ scrip.quantity || 'Quantity' }}</p>
+                    <p>{{ scrip.current_price || 'Current Price' }}</p>
+                    <p>{{ scrip.percentage || '%' }}</p>
+                </div>
+            </article>
+            <p *ngIf="!holdingsTitle">Data not available</p>
+        </section>
+        <section class="va-ic-dash-submain">
             <div>
                 <ul>
                     <li>Watchlist</li>
                     <li>Portfolio</li>
-                    <li>Trade</li>
+                    <li>Positions</li>
                     <li>Funds</li>
                 </ul>
             </div>
         </section>
     </div>
+    <button routerLink="../scrip/chart">Click Me</button>
 </main>

@@ -4,19 +4,35 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { MaterialModule } from '../../varthagam.material.module';
+import { SharedModule } from '../../shared.module';
+
 import { itradeRoutes } from './itrade.routes';
 
-import { DashboardComponent } from './itrade.index';
+import { TradeSession, DashboardComponent,
+    ScripChart } from './itrade.index';
+
+import { SessionActivateGuardService, DashboardActivateGuardService,
+    SessionService, CustomerDetailsService,
+    ChartServices, CustomerFundsService } from './itradeSharedServices';
 
 @NgModule ({
     imports: [
         CommonModule,
         FormsModule, ReactiveFormsModule,
         HttpClientModule,
-        RouterModule.forChild (itradeRoutes)
+        RouterModule.forChild (itradeRoutes),
+        MaterialModule,
+        SharedModule
     ],
     declarations: [
-        DashboardComponent
+        TradeSession, DashboardComponent,
+        ScripChart
+    ],
+    providers: [
+        SessionActivateGuardService, DashboardActivateGuardService,
+        SessionService, CustomerDetailsService,
+        ChartServices, CustomerFundsService
     ]
 })
-export class ItradeAppModule { }
+export class IcTradeAppModule { }

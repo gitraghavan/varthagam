@@ -1,38 +1,121 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
+/* Custom Theming for Angular Material */
+@use 'sass:map';
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$varthagam-primary: mat.define-palette(mat.$indigo-palette);
-$varthagam-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+/* -------------------------------------------------------------------------------------------------------------------- */
+/* Defining a Light Theme */
+$va-light: (
+    50: #FFFCE6,
+    100: #FEF7C2,
+    200: #FEF199,
+    300: #FDEB70,
+    400: #FBE650,
+    500: #F9E12E,
+    600: #FAD12C,
+    700: #F8B925,
+    800: #F6A11E,
+    900: #F17712,
+    A100: #ffffff,
+    A200: #fff7f4,
+    A400: #fc8259,
+    A700: #f44205,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: rgba(black, 0.87),
+        A200: rgba(black, 0.87),
+        A400: rgba(black, 0.87),
+        A700: white,
+    )
+);
 
-// The warn palette is optional (defaults to red).
-$varthagam-warn: mat.define-palette(mat.$red-palette);
+$varthagam-light-primary: mat.define-palette($va-light, 600);
+$varthagam-light-accent: mat.define-palette($va-light, A200, A100, A400);
+$varthagam-light-warn: mat.define-palette($va-light);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$varthagam-theme: mat.define-light-theme((
+$varthagam-light-theme: mat.define-light-theme((
 	color: (
-		primary: $varthagam-primary,
-		accent: $varthagam-accent,
-		warn: $varthagam-warn,
+		primary: $varthagam-light-primary,
+		accent: $varthagam-light-accent,
+		warn: $varthagam-light-warn
 	)
 ));
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/* Defining a Dark Theme */
+$va-dark: (
+    50: #F8F7EF,
+    100: #EEEDE5,
+    200: #E1E0D8,
+    300: #CDCCC5,
+    400: #A8A7A0,
+    500: #87867F,
+    600: #605F59,
+    700: #4D4C46,
+    800: #2F2F29,
+    900: #0F0E05,
+    A100: #ffffff,
+    A200: #fff7f4,
+    A400: #fc8259,
+    A700: #f44205,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: rgba(black, 0.87),
+        A200: rgba(black, 0.87),
+        A400: rgba(black, 0.87),
+        A700: white,
+    )
+);
+
+$varthagam-dark-primary: mat.define-palette($va-dark, 900);
+$varthagam-dark-accent: mat.define-palette($va-dark, A200, A100, A400);
+$varthagam-dark-warn: mat.define-palette($va-dark);
+
+$varthagam-dark-theme: mat.define-dark-theme((
+	color: (
+		primary: $varthagam-dark-primary,
+		accent: $varthagam-dark-accent,
+		warn: $varthagam-dark-warn
+	)
+));
+/* -------------------------------------------------------------------------------------------------------------------- */
+
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($varthagam-theme);
+@include mat.all-component-themes($varthagam-light-theme);
 
+/* -------------------------------------------------------------------------------------------------------------------- */
+/* Set Default Color palete */
+$color-config: mat.get-color-config($varthagam-light-theme);
+$primary-palette: map.get($color-config, 'primary');
+$accent-palette: map.get($color-config, 'accent');
+$warn-palette: map.get($color-config, 'warn');
+$is-dark-theme: map.get($color-config, 'is-dark');
+
+
+/* -------------------------------------------------------------------------------------------------------------------- */
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -41,3 +124,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-body p, .mat-body-1 p, .mat-typography p {
 	margin: 0;
 }
+/* -------------------------------------------------------------------------------------------------------------------- */

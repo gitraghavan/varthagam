@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable ({
-    providedIn: 'root'
+    providedIn: 'any'
 })
-export class UserDetailsService {
+export class ChartServices {
     constructor (private http: HttpClient) {
         //
     }

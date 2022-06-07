@@ -9,6 +9,10 @@ const router = new KoaRouter ({
     prefix: 'v1'
 });
 
+/* Initiate Login
+Store Client User Agent and the Hostname which can later be used to verify the user
+Create a random token number and encrypt to a JWT token which can be used as a state value
+Save the session and log it with a MongoDB Database */
 router.get ('/initiateicicilogin', async (ctx, next) => {
     // Session Token Creation with temporary OTP | tidToken - Temporary ID token
     const userAgent = ctx.request.headers['user-agent'];
@@ -41,15 +45,19 @@ router.get ('/initiateicicilogin', async (ctx, next) => {
         });
 });
 
+/* Oauth Success and Failure
+Navigate user to iTrade site only if the user is successfull, othewise throw error
+On Success API token is receieved which can later be used to get Session Token */
 router.post ('/authenticated/redirect', async (ctx, next) => {
-    // To-do -- Verify is session already active
+    // To-do -- Verify session using the JWT Token (tid) set in the initiate login request
+    // Also verify host and useragent used
 
-    await SessionService.saveSession (ctx.request.body)
+    await SessionService.saveAPISession (ctx.request.body)
         .then ((dbVal) => {
             const getEncryptedToken = TokenService.genB64encrypted (dbVal.authId);
             ctx.cookies.set ('east', getEncryptedToken, { httpOnly: true, domain: env.domain }); // east - Encrypted API Session Token
             ctx.status = 302;
-            ctx.redirect ('http://localhost:4200/itrade/dashboard');
+            ctx.redirect ('http://localhost:4200/itrade');
             next ();
         })
         .catch ((err) => {

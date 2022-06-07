@@ -1,3 +1,4 @@
+import fs from 'fs';
 import NodeRSA from 'node-rsa';
 import CryptoJS from 'crypto-js';
 import jsonWebToken from 'jsonwebtoken';

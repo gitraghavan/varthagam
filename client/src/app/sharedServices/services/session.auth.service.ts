@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { map, catchError } from 'rxjs';
 
-import { CookieAppService } from 'src/app/commonServices/mainCommonServicesIndex';
+import { CookieAppService } from 'src/app/commonServices/index';
 
 @Injectable ({
     providedIn: 'root'

@@ -4,12 +4,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { MaterialModule } from './varthagam.material.module';
+import { SharedModule } from './shared.module';
+
 import { VarthagamMainRouting } from './mainRoute.routing';
 
 import { VarthagamMain,
 	AuthLogin } from './index';
 
-import { AuthInterceptorService } from './commonServices/mainCommonServicesIndex';
+import { AuthInterceptorService } from './commonServices/index';
 
 @NgModule({
 	imports: [
@@ -17,7 +20,9 @@ import { AuthInterceptorService } from './commonServices/mainCommonServicesIndex
 		BrowserAnimationsModule,
 		HttpClientModule,
 		ReactiveFormsModule, FormsModule,
-		VarthagamMainRouting
+		VarthagamMainRouting,
+		MaterialModule,
+		SharedModule
 	],
 	declarations: [
 		VarthagamMain,

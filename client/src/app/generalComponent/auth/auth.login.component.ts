@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserAuthService } from '../../sharedServices/mainSharedServicesIndex';
+import { finalize } from 'rxjs';
+
+import { UserAuthService } from '../../sharedServices';
+import { LoadingService } from '../../commonServices/index';
 
 @Component ({
     selector: 'authLogin',
@@ -8,7 +11,7 @@ import { UserAuthService } from '../../sharedServices/mainSharedServicesIndex';
     styleUrls: ['./auth.login.component.scss']
 })
 export class AuthLogin implements OnInit {
-	constructor (private uas: UserAuthService) {
+	constructor (private uas: UserAuthService, private loadingService: LoadingService) {
 		//
 	}
 
@@ -17,8 +20,13 @@ export class AuthLogin implements OnInit {
 	}
 
 	iciciBreezeSession () {
-		this.uas.userLogin ().subscribe ((d: any) => {
-			window.location.href = d;
-		});
+		this.loadingService.showLoader ();
+		this.uas.userLogin ()
+			.pipe (
+				finalize (() => this.loadingService.stopLoader ())
+			)
+			.subscribe ((d: any) => {
+				window.location.href = d;
+			});
 	}
 }
