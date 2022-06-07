@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { DashboardComponent } from './itrade.index';
+import { TradeSession, DashboardComponent,
+    ScripChart } from './itrade.index';
 
-import { DashboardResolveService } from './itradeSharedServices';
+import { SessionActivateGuardService, DashboardActivateGuardService,
+     DashboardResolveService } from './itradeSharedServices';
 
 export const itradeRoutes: Routes = [
-    { path: 'dashboard', component: DashboardComponent, resolve: [DashboardResolveService] },
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    { path: '', component: TradeSession, canActivate: [ SessionActivateGuardService ] },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [ DashboardActivateGuardService ], resolve: [ DashboardResolveService ] },
+    { path: 'scrip/chart', component: ScripChart },
+    { path: '', redirectTo: '', pathMatch: 'full' }
 ];

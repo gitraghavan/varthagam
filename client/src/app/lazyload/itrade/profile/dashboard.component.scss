@@ -1,3 +1,9 @@
+// Import Global Vathagam Styles
+@use '@angular/material' as mat;
+@import '../../../../varthagamMasterStyle.scss';
+
+$prim: mat.get-color-from-palette($primary-palette);
+
 .va-ic-main-wrapper {
     display: block;
     width: 100%;
@@ -10,6 +16,51 @@
 .va-ic-header-container {
     display: flex;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: $prim;
     padding: 8px 16px;
+}
+
+// Dashboard Top Layer
+.va-ic-dash-main {
+    display: grid;
+    justify-content: center;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.va-ic-dash-submain {
+    display: grid;
+    justify-content: center;
+    padding: 16px;
+}
+.va-ic-dash-wrapper {
+    width: 600px;
+}
+.va-ic-dash-top-details {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+
+    & details {
+        border-top: 4px solid $prim;
+        padding-top: 8px;
+
+        & summary {
+            list-style: none;
+        }
+    }
+}
+.va-ic-hld-table {
+    .va-ic-table-title {
+        font-weight: bold;
+        text-transform: uppercase;
+        border-top: 2px solid $prim;
+        border-bottom: 2px solid $prim;
+    }
+
+    div {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        padding: 8px 0;
+    }
 }

@@ -12,7 +12,8 @@ const devEnvs = {
     apike: process.env.API_KEY,
     apisec: process.env.API_SECRET,
     private_key: privateKey,
-    public_key: publicKey
+    public_key: publicKey,
+    apiurl: process.env.API_URL
 };
 
 export default devEnvs;

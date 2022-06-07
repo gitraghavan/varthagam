@@ -4,5 +4,11 @@
         "secure": false,
         "changeOrigin": false,
         "logLevel": "debug"
+    },
+    "/socket": {
+        "target": "http://localhost:2260/",
+        "secure": false,
+        "changeOrigin": false,
+        "logLevel": "debug"
     }
 }

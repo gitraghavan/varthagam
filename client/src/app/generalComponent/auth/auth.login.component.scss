@@ -1,3 +1,7 @@
+// Import Global Vathagam Styles
+@use '@angular/material' as mat;
+@import '../../../varthagamMasterStyle.scss';
+
 .auth-main-wrapper {
     display: flex;
     width: 100vw;

@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable ()
 export class LoadingService {
-    loadingSubject$ = new BehaviorSubject (true);
+    private loadingSubject$ = new BehaviorSubject<boolean> (false);
 
-    loading$ = this.loadingSubject$.asObservable ();
+    loading$: Observable<boolean> = this.loadingSubject$.asObservable ();
 
-    loadingOn (): void {
+    showLoaderUntilCompleted (v: Observable<boolean>): Observable<boolean> {
+        return of (true);
+    }
+
+    showLoader (): void {
         this.loadingSubject$.next (true);
     }
 
-    loadingOff (): void {
+    stopLoader (): void {
         this.loadingSubject$.next (false);
     }
 }
