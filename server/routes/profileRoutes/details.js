@@ -11,6 +11,7 @@ import UserSessionCollection from '../../utilities/collections/session.collectio
 import CommonServiceLayer from '../../utilities/services/common.request.layer.service.js';
 import CookieService from '../../utilities/services/auth/cookie.service.js';
 import TokenService from '../../utilities/services/auth/token.security.service.js';
+import CustomerDetailsService from '../../utilities/services/profile/customer.details.service.js';
 
 // Sub-Routes
 import userFunds from './funds.js';
@@ -61,17 +62,25 @@ router.get ('/details', async (ctx, next) => {
     }
 });
 
-router.get ('/dematholdings', async (ctx, next) => {
+// Get Customer Holdings in his DEMAT account
+// Map the response to fetch additional data on each specific holdings
+router.get ('/holdings', async (ctx, next) => {
     if (ctx.request.header.cookie) {
-        const reqBody = {};
-        const reqCookie = ctx.request.header.cookie;
-        const path = '/breezeapi/api/v1/dematholdings';
-        const method = 'GET';
+        const c = ctx.request.header.cookie;
+        const dematHld = await CustomerDetailsService.getDematHoldings (c);
 
-        const res = await CommonServiceLayer.reqResGen ({ reqBody, reqCookie, path, method });
+        let sc = [];
 
-        ctx.body = res.Success;
-        ctx.status = res.Status;
+        dematHld.Success.map ((v) => {
+            sc.push (v.stock_code);
+        });
+
+        sc = JSON.stringify (sc);
+
+        const portfolioHoldings = await CustomerDetailsService.getPortfolioHoldings ({ c, ec: 'NSE', sc });
+
+        ctx.body = portfolioHoldings.Success;
+        ctx.status = dematHld.Status;
         return next ();
     };
     // No cookies logout user

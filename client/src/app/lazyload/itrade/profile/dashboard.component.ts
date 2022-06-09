@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
     profile: any;
     holdings: any;
     funds: any;
-    holdingsTitle = ['Stock Code', 'Quantity', 'Current Price', '%'];
+    holdingsTitle = ['Stock Code', 'QTY', 'Avg Price', 'LTP', 'Change %'];
 
     constructor (private activatedRoute: ActivatedRoute,
         private cds: CustomerDetailsService) {
@@ -24,6 +24,10 @@ export class DashboardComponent implements OnInit {
 
         console.log (this.holdings);
         console.log (this.funds);
+
+        this.holdings.map ((v: any) => {
+            return Math.round(v.change_percentage * 100) / 100;
+        })
 
         this.cds.profileData
             .subscribe ((d: any) => {

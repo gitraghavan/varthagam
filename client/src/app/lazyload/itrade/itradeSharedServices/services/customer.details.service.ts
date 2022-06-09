@@ -28,8 +28,8 @@ export class CustomerDetailsService {
             );
     }
 
-    getDematHoldings () {
-        return this.http.get ('/varthagamitrade/profile/customer/dematHoldings')
+    getPortfolioHoldings () {
+        return this.http.get ('/varthagamitrade/profile/customer/holdings')
             .pipe (
                 catchError ((err: any) => err),
             );

@@ -31,7 +31,7 @@
 							"src/assets"
 						],
 						"styles": [
-							"src/varthagamMasterStyle.scss"
+							"src/master-styles.scss"
 						],
 						"scripts": []
 					},

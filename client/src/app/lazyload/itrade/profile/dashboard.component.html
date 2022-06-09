@@ -1,9 +1,10 @@
 <main class="va-ic-main-wrapper">
     <div class="va-ic-wrapper-container">
-        <header class="va-ic-header-container">
+        <header class="va-ic-header-container" color="primary">
             <p>Varthagam</p>
             <p>My Profile</p>
         </header>
+        <button mat-raised-button color="primary">Primary</button>
         <section class="va-ic-dash-main">
             <article class="va-ic-dash-wrapper">
                 <h1>
@@ -35,8 +36,9 @@
                 <div *ngFor="let scrip of holdings">
                     <p>{{ scrip.stock_code || 'Stock Code' }}</p>
                     <p>{{ scrip.quantity || 'Quantity' }}</p>
-                    <p>{{ scrip.current_price || 'Current Price' }}</p>
-                    <p>{{ scrip.percentage || '%' }}</p>
+                    <p>{{ scrip.average_price || 'Average Price' | currency: 'INR' : true : '1.2-2' }}</p>
+                    <p [ngClass]="{ 'va-ic-val-positive' : (scrip.change_percentage > 0) }">{{ scrip.current_market_price || 'Current Price' | currency: 'INR' : true : '1.2-2' }}</p>
+                    <p class="va-ic-grid-l">{{ scrip.change_percentage | number : '1.2-2' }} %</p>
                 </div>
             </article>
             <p *ngIf="!holdingsTitle">Data not available</p>
