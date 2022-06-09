@@ -22,8 +22,7 @@ import { SessionActivateGuardService, DashboardActivateGuardService,
         FormsModule, ReactiveFormsModule,
         HttpClientModule,
         RouterModule.forChild (itradeRoutes),
-        MaterialModule,
-        SharedModule
+        MaterialModule
     ],
     declarations: [
         TradeSession, DashboardComponent,

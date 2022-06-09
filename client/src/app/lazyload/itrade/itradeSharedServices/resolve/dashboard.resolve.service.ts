@@ -14,10 +14,10 @@ export class DashboardResolveService implements Resolve<Observable<any>> {
     }
 
     resolve (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        const dematHoldings = this.cds.getDematHoldings ();
+        const portfolioHoldings = this.cds.getPortfolioHoldings ();
         const customerFunds = this.cfs.getFundsSummary ();
         
-        return forkJoin ([dematHoldings, customerFunds])
+        return forkJoin ([portfolioHoldings, customerFunds])
             .pipe (
                 map ((d: any) => {
                     return {

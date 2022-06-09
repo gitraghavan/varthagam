@@ -1,8 +1,8 @@
-<main class="va-ic-main-wrapper">
+<main class="va-ic-main-wrapper" [ngClass]="{ 'dark-theme' : isDarkMode }">
     <div class="va-ic-wrapper-container">
         <header class="va-ic-header-container">
             <p>Varthagam</p>
-            <p>My Profile</p>
+            <mat-slide-toggle [formControl]="themeControl" color="accent"></mat-slide-toggle>
         </header>
         <section class="va-ic-dash-main">
             <article class="va-ic-dash-wrapper">
@@ -33,10 +33,16 @@
                     <p *ngFor="let hldTitle of holdingsTitle">{{ hldTitle }}</p>
                 </div>
                 <div *ngFor="let scrip of holdings">
-                    <p>{{ scrip.stock_code || 'Stock Code' }}</p>
+                    <p>
+                        <span>{{ scrip.stock_code || 'Stock Code' }}</span>
+                        <sub>{{ scrip.exchange_code || 'Exchange Code' }}</sub>
+                    </p>
                     <p>{{ scrip.quantity || 'Quantity' }}</p>
-                    <p>{{ scrip.current_price || 'Current Price' }}</p>
-                    <p>{{ scrip.percentage || '%' }}</p>
+                    <p>{{ scrip.average_price || 'Average Price' | currency: 'INR' : true : '1.2-2' }}</p>
+                    <p [ngClass]="{ 'va-ic-val-positive': (scrip.change_percentage > 0), 'va-ic-val-negative': (scrip.change_percentage < 0) }">
+                        <span>{{ scrip.current_market_price || 'Current Price' | currency: 'INR' : true : '1.2-2' }}</span>
+                        <sub>{{ scrip.change_percentage | number : '1.2-2' }} %</sub>
+                    </p>
                 </div>
             </article>
             <p *ngIf="!holdingsTitle">Data not available</p>

@@ -1,8 +1,10 @@
 // Import Global Vathagam Styles
+@use 'sass:map';
 @use '@angular/material' as mat;
-@import '../../../../varthagamMasterStyle.scss';
 
-$prim: mat.get-color-from-palette($primary-palette);
+@import '../../../../master-styles';
+
+$prim: map.get($va-light, 600);
 
 .va-ic-main-wrapper {
     display: block;
@@ -50,17 +52,39 @@ $prim: mat.get-color-from-palette($primary-palette);
     }
 }
 .va-ic-hld-table {
-    .va-ic-table-title {
+    & .va-ic-table-title {
         font-weight: bold;
         text-transform: uppercase;
         border-top: 2px solid $prim;
         border-bottom: 2px solid $prim;
     }
 
-    div {
+    & div {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 16px;
-        padding: 8px 0;
+        align-items: center;
+        padding: 16px 0;
+
+        & ~ div ~ div {
+            border-top: 1px solid $prim;
+        }
+
+        & p:last-child {
+            text-align: right;
+            justify-self: end;
+        }
+
+        & p {
+            line-height: .75em;
+
+            span {
+                display: block;
+            }
+
+            sub {
+                color:rgba(0, 0, 0, 0.5)
+            }
+        }
     }
 }

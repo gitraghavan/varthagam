@@ -1,6 +1,6 @@
 /* Custom Theming for Angular Material */
-@use 'sass:map';
 @use '@angular/material' as mat;
+@use '../src//assets/_variables' as _variables;
 
 @include mat.core();
 
@@ -19,8 +19,8 @@ $va-light: (
     900: #F17712,
     A100: #ffffff,
     A200: #fff7f4,
-    A400: #fc8259,
-    A700: #f44205,
+    A400: #32CD30,
+    A700: #FC2E20,
     contrast: (
         50: rgba(black, 0.87),
         100: rgba(black, 0.87),
@@ -40,15 +40,17 @@ $va-light: (
 );
 
 $varthagam-light-primary: mat.define-palette($va-light, 600);
-$varthagam-light-accent: mat.define-palette($va-light, A200, A100, A400);
-$varthagam-light-warn: mat.define-palette($va-light);
+$varthagam-light-accent: mat.define-palette($va-light, A400, A200, A100);
+$varthagam-light-warn: mat.define-palette($va-light, A700);
+
 
 $varthagam-light-theme: mat.define-light-theme((
-	color: (
-		primary: $varthagam-light-primary,
-		accent: $varthagam-light-accent,
-		warn: $varthagam-light-warn
-	)
+    color: (
+        primary: $varthagam-light-primary,
+        accent: $varthagam-light-accent,
+        warn: $varthagam-light-warn,
+        is-dark: false
+    )
 ));
 /* -------------------------------------------------------------------------------------------------------------------- */
 
@@ -92,27 +94,27 @@ $varthagam-dark-accent: mat.define-palette($va-dark, A200, A100, A400);
 $varthagam-dark-warn: mat.define-palette($va-dark);
 
 $varthagam-dark-theme: mat.define-dark-theme((
-	color: (
-		primary: $varthagam-dark-primary,
-		accent: $varthagam-dark-accent,
-		warn: $varthagam-dark-warn
-	)
+    color: (
+        primary: $varthagam-dark-primary,
+        accent: $varthagam-dark-accent,
+        warn: $varthagam-dark-warn,
+        is-dark: true
+    )
 ));
 /* -------------------------------------------------------------------------------------------------------------------- */
 
-
+/* -------------------------------------------------------------------------------------------------------------------- */
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($varthagam-light-theme);
+@include _variables.theme($varthagam-light-theme);
 
+.dark-theme {
+    @include mat.all-component-colors($varthagam-dark-theme);
+    @include _variables.theme($varthagam-dark-theme);
+}
 /* -------------------------------------------------------------------------------------------------------------------- */
-/* Set Default Color palete */
-$color-config: mat.get-color-config($varthagam-light-theme);
-$primary-palette: map.get($color-config, 'primary');
-$accent-palette: map.get($color-config, 'accent');
-$warn-palette: map.get($color-config, 'warn');
-$is-dark-theme: map.get($color-config, 'is-dark');
 
 
 /* -------------------------------------------------------------------------------------------------------------------- */
@@ -125,3 +127,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	margin: 0;
 }
 /* -------------------------------------------------------------------------------------------------------------------- */
+
+// Global Styles
+.va-ic-val-positive {
+    color: green;
+    font-weight: bold;
+}
+.va-ic-val-negative {
+    color: red;
+}

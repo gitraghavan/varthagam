@@ -19,19 +19,23 @@ export class CustomerDetailsService {
     }
 
     getCustomerDetails () {
-        return this.http.get ('/varthagamitrade/profile/customer/details')
+        const loadService = this.http.get ('/varthagamitrade/profile/customer/details')
             .pipe (
                 tap ((d: any) => {
                     this.profileStore$.next (d);
                 }),
                 catchError ((err: any) => err)
             );
+
+        return this.loadingService.showLoaderUntilCompleted (loadService);
     }
 
-    getDematHoldings () {
-        return this.http.get ('/varthagamitrade/profile/customer/dematHoldings')
+    getPortfolioHoldings () {
+        const loadService = this.http.get ('/varthagamitrade/profile/customer/holdings')
             .pipe (
-                catchError ((err: any) => err),
+                catchError ((err: any) => err)
             );
+
+        return this.loadingService.showLoaderUntilCompleted (loadService);
     }
 }
