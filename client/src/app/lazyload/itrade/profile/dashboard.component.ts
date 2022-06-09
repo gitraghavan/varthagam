@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 import { CustomerDetailsService } from '../itradeSharedServices';
 
@@ -12,13 +13,21 @@ export class DashboardComponent implements OnInit {
     profile: any;
     holdings: any;
     funds: any;
-    holdingsTitle = ['Stock Code', 'QTY', 'Avg Price', 'LTP', 'Change %'];
+
+    holdingsTitle = ['Stock Code', 'QTY', 'Avg Price', 'LTP'];
+
+    themeControl: FormControl = new FormControl (false);
+
+    isDarkMode: boolean = false;
 
     constructor (private activatedRoute: ActivatedRoute,
         private cds: CustomerDetailsService) {
     }
 
     ngOnInit () {
+        this.themeControl.valueChanges.subscribe ((v: boolean) => {
+            this.isDarkMode = v;
+        });
         this.holdings = this.activatedRoute.snapshot.data[0].holdings;
         this.funds = this.activatedRoute.snapshot.data[0].funds;
 

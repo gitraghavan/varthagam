@@ -1,6 +1,6 @@
 /* Custom Theming for Angular Material */
-@use 'sass:map';
 @use '@angular/material' as mat;
+@use '../src//assets/_variables' as _variables;
 
 @include mat.core();
 
@@ -108,9 +108,11 @@ $varthagam-dark-theme: mat.define-dark-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($varthagam-light-theme);
+@include _variables.theme($varthagam-light-theme);
 
 .dark-theme {
     @include mat.all-component-colors($varthagam-dark-theme);
+    @include _variables.theme($varthagam-dark-theme);
 }
 /* -------------------------------------------------------------------------------------------------------------------- */
 
@@ -128,6 +130,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // Global Styles
 .va-ic-val-positive {
-    // color: map.get-color-from-palette($va-light, A400);
     color: green;
+    font-weight: bold;
+}
+.va-ic-val-negative {
+    color: red;
 }

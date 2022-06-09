@@ -3,13 +3,10 @@ import { Component } from '@angular/core';
 @Component({
 	selector: 'app-root',
 	template: `
-		<ng-component [ngClass]="{ 'dark-theme' : isDarkTheme }">
-			<loading-modal></loading-modal>
-			<router-outlet></router-outlet>
-		</ng-component>
+	<loading-modal></loading-modal>
+	<router-outlet></router-outlet>
 	`,
 })
 export class VarthagamMain {
 	title = 'varthagam';
-	isDarkTheme = false;
 }

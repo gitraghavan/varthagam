@@ -1,9 +1,9 @@
 // Import Global Vathagam Styles
 @use 'sass:map';
 @use '@angular/material' as mat;
+
 @import '../../../../master-styles';
 
-$prim: map.get($va-dark, 900);
 $prim: map.get($va-light, 600);
 
 .va-ic-main-wrapper {
@@ -18,7 +18,7 @@ $prim: map.get($va-light, 600);
 .va-ic-header-container {
     display: flex;
     justify-content: space-between;
-    // background-color: $prim;
+    background-color: $prim;
     padding: 8px 16px;
 }
 
@@ -61,12 +61,30 @@ $prim: map.get($va-light, 600);
 
     & div {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 16px;
-        padding: 8px 0;
+        align-items: center;
+        padding: 16px 0;
+
+        & ~ div ~ div {
+            border-top: 1px solid $prim;
+        }
 
         & p:last-child {
+            text-align: right;
             justify-self: end;
+        }
+
+        & p {
+            line-height: .75em;
+
+            span {
+                display: block;
+            }
+
+            sub {
+                color:rgba(0, 0, 0, 0.5)
+            }
         }
     }
 }
