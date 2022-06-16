@@ -1,23 +1,28 @@
 <main class="va-ic-main-wrapper" [ngClass]="{ 'dark-theme' : isDarkMode }">
     <div class="va-ic-wrapper-container">
-        <header class="va-ic-header-container">
-            <p>Varthagam</p>
-            <mat-slide-toggle [formControl]="themeControl" color="accent"></mat-slide-toggle>
+        <header class="va-ic-header-container prim-theme">
+            <h1>Varthagam</h1>
+            <mat-slide-toggle [formControl]="themeControl" (checked)="isDarkMode" color="accent"></mat-slide-toggle>
         </header>
         <section class="va-ic-dash-main">
             <article class="va-ic-dash-wrapper">
-                <h1>
-                    <span>Welcome</span><br>
+                <h1 class="va-ic-dash-wlcm-txt">
+                    <i>Welcome</i>
                     <span>{{ profile.idirect_user_name | titlecase }}</span>
                 </h1>
                 <article class="va-ic-dash-top-details">
                     <details open>
                         <summary>Invested</summary>
-                        <p>{{ funds.unallocated_balance | currency: 'INR': 'symbol' : '2.2-2' }}</p>
+                        <p>{{ totalInvestment | currency: 'INR': 'symbol' : '2.2-2' }}</p>
                     </details>
                     <details open>
                         <summary>P & L</summary>
-                        <p>{{ funds.unallocated_balance | currency: 'INR': 'symbol' : '2.2-2' }}</p>
+                        <div class="va-item-split-end">
+                            <p [ngClass]="{ 'va-ic-val-positive': (currentInvestment > 0), 'va-ic-val-negative': (currentInvestment < 0) }">
+                                <span>{{ currentInvestment | currency: 'INR': 'symbol' : '2.2-2' }}</span>
+                            </p>
+                            <sub>{{ 10 | number : '1.2-2' }} %</sub>
+                        </div>
                     </details>
                     <details open>
                         <summary>Funds</summary>
@@ -38,9 +43,9 @@
                         <sub>{{ scrip.exchange_code || 'Exchange Code' }}</sub>
                     </p>
                     <p>{{ scrip.quantity || 'Quantity' }}</p>
-                    <p>{{ scrip.average_price || 'Average Price' | currency: 'INR' : true : '1.2-2' }}</p>
+                    <p>{{ scrip.average_price || 'Average Price' | currency: 'INR' : 'symbol' : '1.2-2' }}</p>
                     <p [ngClass]="{ 'va-ic-val-positive': (scrip.change_percentage > 0), 'va-ic-val-negative': (scrip.change_percentage < 0) }">
-                        <span>{{ scrip.current_market_price || 'Current Price' | currency: 'INR' : true : '1.2-2' }}</span>
+                        <span>{{ scrip.current_market_price || 'Current Price' | currency: 'INR' : 'symbol' : '1.2-2' }}</span>
                         <sub>{{ scrip.change_percentage | number : '1.2-2' }} %</sub>
                     </p>
                 </div>
@@ -58,5 +63,5 @@
             </div>
         </section>
     </div>
-    <button routerLink="../scrip/chart">Click Me</button>
+    <button mat-raised-button routerLink="../scrip/chart">Route to another page</button>
 </main>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { LoadingService } from '../../../../commonServices';
 
@@ -12,12 +12,16 @@ export class CustomerFundsService {
         //
     }
 
-    getFundsSummary () {
-        const loadService = this.http.get ('./varthagamitrade/profile/customer/funds/summary')
+    getFundsSummary (loader: boolean = false) {
+        const fundsSummary$ = this.http.get ('./varthagamitrade/profile/customer/funds/summary')
             .pipe (
                 catchError ((err: any) => err)
             );
+        
+        if (loader) {
+            return fundsSummary$;
+        }
 
-        return this.loadingService.showLoaderUntilCompleted (loadService);
+        return this.loadingService.showLoaderUntilCompleted (fundsSummary$);
     }
 }

@@ -1,132 +1,37 @@
 /* Custom Theming for Angular Material */
 @use '@angular/material' as mat;
-@use '../src//assets/_variables' as _variables;
 
-@include mat.core();
+@import 'variables';
+@import 'typography';
+@import 'addon';
 
-/* -------------------------------------------------------------------------------------------------------------------- */
-/* Defining a Light Theme */
-$va-light: (
-    50: #FFFCE6,
-    100: #FEF7C2,
-    200: #FEF199,
-    300: #FDEB70,
-    400: #FBE650,
-    500: #F9E12E,
-    600: #FAD12C,
-    700: #F8B925,
-    800: #F6A11E,
-    900: #F17712,
-    A100: #ffffff,
-    A200: #fff7f4,
-    A400: #32CD30,
-    A700: #FC2E20,
-    contrast: (
-        50: rgba(black, 0.87),
-        100: rgba(black, 0.87),
-        200: rgba(black, 0.87),
-        300: rgba(black, 0.87),
-        400: rgba(black, 0.87),
-        500: white,
-        600: white,
-        700: white,
-        800: white,
-        900: white,
-        A100: rgba(black, 0.87),
-        A200: rgba(black, 0.87),
-        A400: rgba(black, 0.87),
-        A700: white,
-    )
-);
-
-$varthagam-light-primary: mat.define-palette($va-light, 600);
-$varthagam-light-accent: mat.define-palette($va-light, A400, A200, A100);
-$varthagam-light-warn: mat.define-palette($va-light, A700);
-
-
-$varthagam-light-theme: mat.define-light-theme((
-    color: (
-        primary: $varthagam-light-primary,
-        accent: $varthagam-light-accent,
-        warn: $varthagam-light-warn,
-        is-dark: false
-    )
-));
-/* -------------------------------------------------------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------------------------------------------------------- */
-/* Defining a Dark Theme */
-$va-dark: (
-    50: #F8F7EF,
-    100: #EEEDE5,
-    200: #E1E0D8,
-    300: #CDCCC5,
-    400: #A8A7A0,
-    500: #87867F,
-    600: #605F59,
-    700: #4D4C46,
-    800: #2F2F29,
-    900: #0F0E05,
-    A100: #ffffff,
-    A200: #fff7f4,
-    A400: #fc8259,
-    A700: #f44205,
-    contrast: (
-        50: rgba(black, 0.87),
-        100: rgba(black, 0.87),
-        200: rgba(black, 0.87),
-        300: rgba(black, 0.87),
-        400: rgba(black, 0.87),
-        500: white,
-        600: white,
-        700: white,
-        800: white,
-        900: white,
-        A100: rgba(black, 0.87),
-        A200: rgba(black, 0.87),
-        A400: rgba(black, 0.87),
-        A700: white,
-    )
-);
-
-$varthagam-dark-primary: mat.define-palette($va-dark, 900);
-$varthagam-dark-accent: mat.define-palette($va-dark, A200, A100, A400);
-$varthagam-dark-warn: mat.define-palette($va-dark);
-
-$varthagam-dark-theme: mat.define-dark-theme((
-    color: (
-        primary: $varthagam-dark-primary,
-        accent: $varthagam-dark-accent,
-        warn: $varthagam-dark-warn,
-        is-dark: true
-    )
-));
-/* -------------------------------------------------------------------------------------------------------------------- */
+@include mat.core($varthagam-typography-config);
 
 /* -------------------------------------------------------------------------------------------------------------------- */
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($varthagam-light-theme);
-@include _variables.theme($varthagam-light-theme);
+@include theme($varthagam-light-theme);
 
 .dark-theme {
     @include mat.all-component-colors($varthagam-dark-theme);
-    @include _variables.theme($varthagam-dark-theme);
+    @include theme($varthagam-dark-theme);
 }
 /* -------------------------------------------------------------------------------------------------------------------- */
 
+/* -------------------------------------------------------------------------------------------------------------------- */
+/* Overrides */
+.mat-h1, .mat-headline, .mat-typography .mat-h1, .mat-typography .mat-headline, .mat-typography h1,
+.mat-body p, .mat-body-1 p, .mat-typography .mat-body p, .mat-typography .mat-body-1 p, .mat-typography p {
+	margin: 0;
+}
+/* -------------------------------------------------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------------------------------------------------- */
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-/* Overrides */
-.mat-body p, .mat-body-1 p, .mat-typography p {
-	margin: 0;
-}
-/* -------------------------------------------------------------------------------------------------------------------- */
+body { margin: 0; font-size: .8rem }
 
 // Global Styles
 .va-ic-val-positive {
@@ -136,3 +41,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .va-ic-val-negative {
     color: red;
 }
+/* -------------------------------------------------------------------------------------------------------------------- */

@@ -18,8 +18,7 @@ $prim: map.get($va-light, 600);
 .va-ic-header-container {
     display: flex;
     justify-content: space-between;
-    background-color: $prim;
-    padding: 8px 16px;
+    padding: 16px 24px;
 }
 
 // Dashboard Top Layer
@@ -37,9 +36,15 @@ $prim: map.get($va-light, 600);
 .va-ic-dash-wrapper {
     width: 600px;
 }
+.va-ic-dash-wlcm-txt {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-bottom: 16px;
+}
 .va-ic-dash-top-details {
     display: grid;
-    gap: 16px;
+    gap: 24px;
     grid-template-columns: repeat(3, 1fr);
 
     & details {
@@ -51,12 +56,22 @@ $prim: map.get($va-light, 600);
         }
     }
 }
+.va-item-split-end {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    & sub {
+        color:rgba(0, 0, 0, 0.5)
+    }
+}
 .va-ic-hld-table {
     & .va-ic-table-title {
         font-weight: bold;
         text-transform: uppercase;
-        border-top: 2px solid $prim;
-        border-bottom: 2px solid $prim;
+        border-width: 2px 0;
+        border-style: solid;
+        border-color: $prim;
     }
 
     & div {
@@ -67,7 +82,9 @@ $prim: map.get($va-light, 600);
         padding: 16px 0;
 
         & ~ div ~ div {
-            border-top: 1px solid $prim;
+            border-width: 1px 0 0;
+            border-style: solid;
+            border-color: $prim;
         }
 
         & p:last-child {
@@ -78,11 +95,11 @@ $prim: map.get($va-light, 600);
         & p {
             line-height: .75em;
 
-            span {
+            & span {
                 display: block;
             }
 
-            sub {
+            & sub {
                 color:rgba(0, 0, 0, 0.5)
             }
         }
