@@ -39,6 +39,7 @@ testem.log
 /server/node_modules
 /server/configs/*.env
 /server/*.pem
+/server/package-lock.json
 
 # System files
 .DS_Store

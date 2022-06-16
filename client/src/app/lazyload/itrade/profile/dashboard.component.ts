@@ -10,6 +10,9 @@ import { CustomerDetailsService } from '../itradeSharedServices';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+    totalInvestment: number = 0;
+    currentInvestment: number = 0;
+
     profile: any;
     holdings: any;
     funds: any;
@@ -25,6 +28,8 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit () {
+        this.totalInvestment = Number (localStorage.getItem ('tia'));
+        this.currentInvestment = Number (localStorage.getItem ('civ')) - Number (localStorage.getItem ('tia'));
         this.themeControl.valueChanges.subscribe ((v: boolean) => {
             this.isDarkMode = v;
         });
