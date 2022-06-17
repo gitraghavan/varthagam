@@ -1,0 +1,21 @@
+<section class="va-ic-sec-main">
+    <p class="title">Holdings</p>
+    <article class="va-ic-dash-wrapper va-ic-hld-table" *ngIf="holdings">
+        <div class="va-ic-table-title theme-border">
+            <p *ngFor="let hldTitle of holdingsTitle">{{ hldTitle }}</p>
+        </div>
+        <div class="theme-border" *ngFor="let scrip of holdings" (click)="navigateToChart (scrip)">
+            <p>
+                <span>{{ scrip.stock_code || 'Stock Code' }}</span>
+                <sub>{{ scrip.exchange_code || 'Exchange Code' }}</sub>
+            </p>
+            <p>{{ scrip.quantity || 'Quantity' }}</p>
+            <p>{{ scrip.average_price || 'Average Price' | currency: 'INR' : 'symbol' : '1.2-2' }}</p>
+            <p [ngClass]="{ 'va-ic-val-positive': (scrip.change_percentage > 0), 'va-ic-val-negative': (scrip.change_percentage < 0) }">
+                <span>{{ scrip.current_market_price || 'Current Price' | currency: 'INR' : 'symbol' : '1.2-2' }}</span>
+                <sub>{{ scrip.change_percentage | number : '1.2-2' }} %</sub>
+            </p>
+        </div>
+    </article>
+    <p *ngIf="!holdings">Data not available</p>
+</section>

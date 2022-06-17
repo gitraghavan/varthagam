@@ -1,11 +1,12 @@
 /* Custom Theming for Angular Material */
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @import 'variables';
 @import 'typography';
 @import 'addon';
 
-@include mat.core($varthagam-typography-config);
+@include mat.core();
 
 /* -------------------------------------------------------------------------------------------------------------------- */
 // Include theme styles for core and each component used in your app.
@@ -17,28 +18,14 @@
 .dark-theme {
     @include mat.all-component-colors($varthagam-dark-theme);
     @include theme($varthagam-dark-theme);
-}
-/* -------------------------------------------------------------------------------------------------------------------- */
 
-/* -------------------------------------------------------------------------------------------------------------------- */
-/* Overrides */
-.mat-h1, .mat-headline, .mat-typography .mat-h1, .mat-typography .mat-headline, .mat-typography h1,
-.mat-body p, .mat-body-1 p, .mat-typography .mat-body p, .mat-typography .mat-body-1 p, .mat-typography p {
-	margin: 0;
+    background-color: map.get($va-dark, 900);
+    color: #ffffff;
 }
 /* -------------------------------------------------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------------------------------------------------- */
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; font-size: .8rem }
-
-// Global Styles
-.va-ic-val-positive {
-    color: green;
-    font-weight: bold;
-}
-.va-ic-val-negative {
-    color: red;
-}
+body { margin: 0; font: 400 14px / normal Roboto; }
 /* -------------------------------------------------------------------------------------------------------------------- */

@@ -1,18 +1,27 @@
-// Typography Partials
-@use '@angular/material' as mat;
+h1 {
+    font: 400 1.6em / normal Roboto;
+}
+h2 {
+    font: 400 1.5em / normal Roboto;
+}
+h3 {
+    font: 400 1.4em / normal Roboto;
+}
+h4 {
+    font: 400 1.3em / normal Roboto;
+}
+h5 {
+    font: 400 1.2em / normal Roboto;
+}
+h6 {
+    font: 400 1.1em / normal Roboto;
+}
 
-$varthagam-typography-config: mat.define-typography-config(
-    $font-family:   'Roboto, monospace',
-    $display-4:     mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
-    $display-3:     mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
-    $display-2:     mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
-    $display-1:     mat.define-typography-level(34px, 40px, 400),
-    $headline:      mat.define-typography-level(1.4rem, 1.6rem, 400),
-    $title:         mat.define-typography-level(1.4rem, 1.4rem, 400),
-    $subheading-2:  mat.define-typography-level(1.2rem, 1.2rem, 400),
-    $subheading-1:  mat.define-typography-level(1.2rem, 1.1rem, 400),
-    $body-1:        mat.define-typography-level(1rem, 1.4rem, 400),
-    $body-2:        mat.define-typography-level(1rem, 1.4rem, 400),
-    $caption:       mat.define-typography-level(.8rem, 1rem, 400),
-    $button:        mat.define-typography-level(1rem, 1rem, 400)
-);
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+.title {
+    padding-bottom: 8px;
+    font: 400 1.3em / normal Roboto;
+}

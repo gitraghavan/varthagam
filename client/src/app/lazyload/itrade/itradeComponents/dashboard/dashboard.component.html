@@ -1,0 +1,7 @@
+<main class="va-ic-main-wrapper" [ngClass]="{ 'dark-theme' : isDarkMode }">
+    <div class="va-ic-wrapper-container">
+        <itrade-header (darkModeEve)="themeSelector ($event)"></itrade-header>
+        <basic-info [profile]="profile" [balance]="funds.unallocated_balance"></basic-info>
+        <itrade-holdings [holdingsTitle]="holdingsTitle" [holdings]="holdings"></itrade-holdings>
+    </div>
+</main>

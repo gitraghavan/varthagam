@@ -1,0 +1,27 @@
+<section class="va-ic-sec-main va-ic-prim-bg">
+    <article class="va-ic-dash-wrapper">
+        <h1 class="va-ic-dash-wlcm-txt">
+            <i>Welcome</i>
+            <span>{{ profile.idirect_user_name | titlecase }}</span>
+        </h1>
+        <article class="va-ic-dash-top-details">
+            <div class="theme-border">
+                <p>Invested</p>
+                <p>{{ totalInvestment | currency: 'INR': 'symbol' : '2.2-2' }}</p>
+            </div>
+            <div class="theme-border">
+                <p>P & L</p>
+                <div class="va-item-split-end">
+                    <p [ngClass]="{ 'va-ic-val-positive': (currentInvestment > 0), 'va-ic-val-negative': (currentInvestment < 0) }">
+                        <span>{{ currentInvestment | currency: 'INR': 'symbol' : '2.2-2' }}</span>
+                    </p>
+                    <sub>{{ 10 | number : '1.2-2' }} %</sub>
+                </div>
+            </div>
+            <div class="theme-border">
+                <p>Funds</p>
+                <p>{{ balance | currency: 'INR': 'symbol' : '2.2-2' }}</p>
+            </div>
+        </article>
+    </article>
+</section>
