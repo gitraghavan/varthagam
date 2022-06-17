@@ -5,6 +5,7 @@
 import Koa from 'koa';
 import KoaBody from 'koa-body';
 import { createServer } from "http";
+import { Server } from 'socket.io';
 
 import MongooseClient from 'mongoose';
 
@@ -15,6 +16,8 @@ const port = env.port;
 
 const app = new Koa ();
 const httpServer = createServer (app.callback ());
+
+const io = new Server (httpServer);
 
 MongooseClient.connect ('mongodb://localhost/varthagam');
 MongooseClient.connection
@@ -29,3 +32,7 @@ app.use (connectedRoutes.routes (), connectedRoutes.allowedMethods ());
 httpServer.listen (port, () => {
     console.log (`Application running on http://localhost:${env.port}`);
 });
+
+// io.on ('connect', (socket) => {
+//     console.log (socket.id);
+// });

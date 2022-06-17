@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
 
-import { CustomerDetailsService } from '../itradeSharedServices';
+import { CustomerDetailsService } from '../../itradeSharedServices';
 
 @Component ({
     selector: 'itrade-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    styleUrls: ['./dashboard.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
     totalInvestment: number = 0;
@@ -19,20 +19,13 @@ export class DashboardComponent implements OnInit {
 
     holdingsTitle = ['Stock Code', 'QTY', 'Avg Price', 'LTP'];
 
-    themeControl: FormControl = new FormControl (false);
-
-    isDarkMode: boolean = false;
+    isDarkMode: boolean = true;
 
     constructor (private activatedRoute: ActivatedRoute,
         private cds: CustomerDetailsService) {
     }
 
     ngOnInit () {
-        this.totalInvestment = Number (localStorage.getItem ('tia'));
-        this.currentInvestment = Number (localStorage.getItem ('civ')) - Number (localStorage.getItem ('tia'));
-        this.themeControl.valueChanges.subscribe ((v: boolean) => {
-            this.isDarkMode = v;
-        });
         this.holdings = this.activatedRoute.snapshot.data[0].holdings;
         this.funds = this.activatedRoute.snapshot.data[0].funds;
 
@@ -47,5 +40,9 @@ export class DashboardComponent implements OnInit {
             .subscribe ((d: any) => {
                 this.profile = d;
             });
+    }
+
+    themeSelector (v: any) {
+        this.isDarkMode = v;
     }
 }

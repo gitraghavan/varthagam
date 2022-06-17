@@ -5,11 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../../varthagam.material.module';
-import { SharedModule } from '../../shared.module';
 
 import { itradeRoutes } from './itrade.routes';
 
 import { TradeSession, DashboardComponent,
+    HeaderComponent, FooterComponent,
+    BasicDashboardInfo, UserHoldings,
     ScripChart } from './itrade.index';
 
 import { SessionActivateGuardService, DashboardActivateGuardService,
@@ -26,6 +27,8 @@ import { SessionActivateGuardService, DashboardActivateGuardService,
     ],
     declarations: [
         TradeSession, DashboardComponent,
+        HeaderComponent, FooterComponent,
+        BasicDashboardInfo, UserHoldings,
         ScripChart
     ],
     providers: [

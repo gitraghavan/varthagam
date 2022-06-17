@@ -10,13 +10,57 @@
     $warn-palette:      map.get($color-config, 'warn');
     $is-dark-theme:     map.get($color-config, is-dark);
 
-    
     .prim-theme {
         background-color: mat.get-color-from-palette($primary-palette);
         @if $is-dark-theme {
             color: #ffffff;
         } @else {
             color: #000000;
+        }
+    }
+
+    .theme-border {
+        @if $is-dark-theme {
+            border-color: #ffffff;
+        } @else {
+            border-color: mat.get-color-from-palette($primary-palette);
+        }
+    }
+
+    sub {
+        @if $is-dark-theme {
+            color: rgba(255, 255, 255, 0.5);
+        } @else {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .va-ic-val-positive {
+        @if $is-dark-theme {
+            color: map.get($va-dark, A400);
+        } @else {
+            color: map.get($va-light, A400);
+        }
+    }
+    .va-ic-val-negative {
+        @if $is-dark-theme {
+            color: map.get($va-dark, A700);
+        } @else {
+            color: map.get($va-light, A700);
+        }
+    }
+    .va-ic-prim-bg {
+        @if $is-dark-theme {
+            background-color: rgba(0, 0, 0, 0.5);
+        } @else {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+    .va-ic-accent-bg {
+        @if $is-dark-theme {
+            background-color: rgba(0, 0, 0, 0.5);
+        } @else {
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
     }
 }
