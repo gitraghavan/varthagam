@@ -1,4 +1,15 @@
 <header class="va-ic-header-container prim-theme">
-    <h1>Varthagam</h1>
-    <mat-slide-toggle [formControl]="themeControl" color="accent"></mat-slide-toggle>
+    <div routerLink="/itrade">
+        <h1>Varthagam</h1>
+    </div>
+    <div>
+        <ul class="va-ic-header-link">
+            <li [routerLink]="['chart', 'nifty']">Chart</li>
+            <li>Trade</li>
+        </ul>
+    </div>
+    <div>
+        <mat-slide-toggle [formControl]="themeControl" color="accent"></mat-slide-toggle>
+        <p routerLink="/login">Logout</p>
+    </div>
 </header>

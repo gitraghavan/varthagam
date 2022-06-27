@@ -8,8 +8,12 @@ import { Component, Input } from '@angular/core';
             & .va-ic-table-title {
                 font-weight: bold;
                 text-transform: uppercase;
-                border-width: 2px 0;
-                border-style: solid;
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+            }
+
+            & .va-ic-table-list {
+                cursor: pointer;
             }
 
             & div {
@@ -18,7 +22,6 @@ import { Component, Input } from '@angular/core';
                 gap: 16px;
                 align-items: center;
                 padding: 16px 0;
-                cursor: pointer;
 
                 & ~ div ~ div {
                     border-width: 1px 0 0;

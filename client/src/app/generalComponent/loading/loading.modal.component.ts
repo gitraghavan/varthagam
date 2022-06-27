@@ -10,6 +10,7 @@ import { LoadingService } from '../../commonServices/index';
         `,
     styles: [`
         .va-loader {
+            z-index: 1090;
             width: 100%;
             height: 100%;
             display: flex;

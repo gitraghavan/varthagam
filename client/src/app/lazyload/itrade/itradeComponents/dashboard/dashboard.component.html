@@ -1,7 +1,28 @@
-<main class="va-ic-main-wrapper" [ngClass]="{ 'dark-theme' : isDarkMode }">
-    <div class="va-ic-wrapper-container">
-        <itrade-header (darkModeEve)="themeSelector ($event)"></itrade-header>
-        <basic-info [profile]="profile" [balance]="funds.unallocated_balance"></basic-info>
-        <itrade-holdings [holdingsTitle]="holdingsTitle" [holdings]="holdings"></itrade-holdings>
-    </div>
-</main>
+<basic-info
+    [profile]="profile"
+    [balance]="funds.unallocated_balance">
+</basic-info>
+<section class="va-ic-sec-main">
+    <article class="va-ic-dash-wrapper va-ic-dash-tab theme-border">
+        <mat-tab-group color="accent">
+            <mat-tab label="Watchlist">
+                <article class="va-ic-table-list va-ic-no-data-txt">
+                    <ng-container>
+                        <p class="display-content-1">
+                            <span>Please search and add scrip to the watchlist.</span>
+                            <mat-icon aria-hidden="false" aria-label="Add more scrip Icon" [inline]="true">add_circle_outline</mat-icon>
+                        </p>
+                    </ng-container>
+                </article>
+            </mat-tab>
+            <mat-tab label="Holdings">
+                <article class="va-ic-table-list">
+                    <itrade-holdings
+                        [holdingsTitle]="holdingsTitle"
+                        [holdings]="holdings">
+                    </itrade-holdings>
+                </article>
+            </mat-tab>
+        </mat-tab-group>
+    </article>
+</section>

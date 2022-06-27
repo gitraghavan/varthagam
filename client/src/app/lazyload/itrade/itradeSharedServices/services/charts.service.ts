@@ -9,7 +9,11 @@ export class ChartServices {
         //
     }
 
-    getHistoricalChart () {
-        return this.http.get ('/varthagamitrade/screener/chart/historicalcharts')
+    getHistoricalChart (s: any) {
+        let ns = `nse/${s.scrip}`;
+        if (s.exch) {
+            ns = `${s.exch}/${s.scrip}`;
+        }
+        return this.http.get (`/varthagamitrade/events/chart/historicalcharts/${ns}`)
     }
 }

@@ -21,7 +21,6 @@ export class SessionActivateGuardService implements CanActivate {
                         this.router.navigate (['login'], { relativeTo: this.activatedRoute });
                         return false;
                     }
-                    this.router.navigate (['itrade', 'dashboard'], { relativeTo: this.activatedRoute });
                     return true;
                 })
             );
