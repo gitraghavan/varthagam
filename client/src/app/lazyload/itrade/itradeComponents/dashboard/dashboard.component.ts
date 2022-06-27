@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { CustomerDetailsService } from '../../itradeSharedServices';
@@ -6,8 +6,7 @@ import { CustomerDetailsService } from '../../itradeSharedServices';
 @Component ({
     selector: 'itrade-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
     totalInvestment: number = 0;
@@ -18,8 +17,6 @@ export class DashboardComponent implements OnInit {
     funds: any;
 
     holdingsTitle = ['Stock Code', 'QTY', 'Avg Price', 'LTP'];
-
-    isDarkMode: boolean = true;
 
     constructor (private activatedRoute: ActivatedRoute,
         private cds: CustomerDetailsService) {
@@ -40,9 +37,5 @@ export class DashboardComponent implements OnInit {
             .subscribe ((d: any) => {
                 this.profile = d;
             });
-    }
-
-    themeSelector (v: any) {
-        this.isDarkMode = v;
     }
 }

@@ -51,7 +51,7 @@ export class CustomerDetailsService {
                     });
                     const totalInvestedAmount = invested.reduce ((investment: number, a: number) => investment + a);
                     const currentInvestedValue = ltp.reduce ((investment: number, a: number) => investment + a);
-                    console.log (totalInvestedAmount);
+
                     localStorage.setItem ('tia', totalInvestedAmount);
                     localStorage.setItem ('civ', currentInvestedValue);
                     return d;

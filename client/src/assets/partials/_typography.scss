@@ -21,7 +21,25 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 .title {
     padding-bottom: 8px;
     font: 400 1.3em / normal Roboto;
+}
+.display-content-1 {
+    padding: 8px;
+    font: 100 4em / normal Roboto; // Setting font size here to control the mat icon inside (FYI - this approach is due to mat-icon having inline value set to true)
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > span {
+        font: 100 .6em / normal Roboto;
+        padding-bottom:16px;
+    }
 }

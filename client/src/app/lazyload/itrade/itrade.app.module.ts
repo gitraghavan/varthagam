@@ -11,7 +11,7 @@ import { itradeRoutes } from './itrade.routes';
 import { TradeSession, DashboardComponent,
     HeaderComponent, FooterComponent,
     BasicDashboardInfo, UserHoldings,
-    ScripChart } from './itrade.index';
+    ScripChart, SearchAndFilter } from './itrade.index';
 
 import { SessionActivateGuardService, DashboardActivateGuardService,
     SessionService, CustomerDetailsService,
@@ -29,7 +29,7 @@ import { SessionActivateGuardService, DashboardActivateGuardService,
         TradeSession, DashboardComponent,
         HeaderComponent, FooterComponent,
         BasicDashboardInfo, UserHoldings,
-        ScripChart
+        ScripChart, SearchAndFilter
     ],
     providers: [
         SessionActivateGuardService, DashboardActivateGuardService,
