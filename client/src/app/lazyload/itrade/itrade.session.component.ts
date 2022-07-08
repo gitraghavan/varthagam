@@ -4,7 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     selector: 'itrade-session',
     template: `
         <main class="va-ic-main-wrapper" [ngClass]="{ 'dark-theme' : isDarkMode }">
-            <div class="va-ic-wrapper-container">
+            <div class="va-ic-wrapper-container va-ic-fit-content-last">
                 <itrade-header (darkModeEve)="themeSelector ($event)"></itrade-header>
                 <router-outlet></router-outlet>
             </div>
@@ -18,8 +18,18 @@ import { Component, ViewEncapsulation } from '@angular/core';
             height: 100%;
         }
         .va-ic-wrapper-container {
+            height: 100%;
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-rows: repeat(1, auto) 1fr;
+        }
+        .va-ic-fit-content-last {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+
+            & > :last-child {
+                flex-grow: 1;
+            }
         }
         .va-ic-sec-main {
             display: grid;

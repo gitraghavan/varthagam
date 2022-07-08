@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
     templateUrl: './header.component.html',
     styles: [`
         .va-ic-header-container {
+            height: 50px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
