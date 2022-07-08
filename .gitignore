@@ -36,6 +36,7 @@ testem.log
 /typings
 /client/.angular
 /client/node_modules
+/client/package-lock.json
 /server/node_modules
 /server/configs/*.env
 /server/*.pem
