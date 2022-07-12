@@ -28,19 +28,27 @@ export class ScripChart implements OnInit, AfterViewInit {
 
     ngAfterViewInit (): void {
         // Sizes & Margins
-        const chartMargins = { ml: 100, mr: 10, mt: 10, mb: 100 };
+        const chartMargins = { ml: 80, mr: 10, mt: 10, mb: 40 };
         const fullWidth = this.scripChartCanvasEl.nativeElement.getBoundingClientRect ().width;
-        const maxHeight = 500;
+        const maxHeight = this.scripChartCanvasEl.nativeElement.getBoundingClientRect ().height;
         const graphWidth = fullWidth - chartMargins.ml - chartMargins.mr;
         const graphHeight = maxHeight - chartMargins.mt - chartMargins.mb;
         const min: number = Number (d3.min (this.ohlcData, (d: any) => Number (d.volume)));
         const max: number = Number (d3.max (this.ohlcData, (d: any) => Number (d.volume)));
         const dateExtent = <[Date, Date]>d3.extent (this.ohlcData, (d: any) =>  new Date (d.datetime));
 
+        // Factory Helper Methods
+        const formatDate = (dt: Date) => {
+            const formatTime = d3.timeFormat ('%d %b');
+            return formatTime (dt);
+        }
+
         // Scales
-        const x = d3.scaleTime ()
-            .domain (dateExtent)
-            .range ([0, graphWidth]);
+        const x = d3.scaleBand ()
+            .domain (this.ohlcData.map ((d: any) => formatDate (new Date (d.datetime))))
+            .range ([0, graphWidth])
+            .paddingInner (0.1)
+            .paddingOuter(0.1);
         const y = d3.scaleLinear ()
             .domain ([0, Number (max)])
             .range ([graphHeight, 0]);
@@ -64,17 +72,16 @@ export class ScripChart implements OnInit, AfterViewInit {
             .data (this.ohlcData);
         chartSvg.enter ()
             .append ('rect')
-                .attr ('width', 50)
+                .attr ('width', x.bandwidth)
                 .attr ('height', (d: any) => graphHeight - y (d.volume))
-                .attr ('x', (d: any) => x (new Date (d.datetime)) - 25)
+                .attr ('x', (d: any) => {
+                    return Number (x (formatDate (new Date (d.datetime))));
+                })
                 .attr ('y', (d: any) => Number (y (d.volume)))
                 .attr ('fill', 'red');
 
         // Axis
-        const xAxis = d3.axisBottom <Date>(x)
-            .ticks (d3.timeDay.every (1))
-            .tickFormat (d3.timeFormat ('%d %b'))
-            .tickValues(this.ohlcData.map ((d: any) => new Date (d.datetime)));
+        const xAxis = d3.axisBottom (x);
         const yAxis = d3.axisLeft (y)
             .ticks (2);
 
