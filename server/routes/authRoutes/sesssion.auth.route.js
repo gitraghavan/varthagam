@@ -57,7 +57,7 @@ router.post ('/authenticated/redirect', async (ctx, next) => {
             const getEncryptedToken = TokenService.genB64encrypted (dbVal.authId);
             ctx.cookies.set ('east', getEncryptedToken, { httpOnly: true, domain: env.domain }); // east - Encrypted API Session Token
             ctx.status = 302;
-            ctx.redirect ('http://localhost:4200/itrade');
+            ctx.redirect ('http://localhost:2200/itrade');
             next ();
         })
         .catch ((err) => {

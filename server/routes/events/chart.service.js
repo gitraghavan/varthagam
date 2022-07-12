@@ -10,12 +10,12 @@ router.get ('/historicalcharts/:exch/:scrip', async (ctx, next) => {
     if (ctx.request.header.cookie) {
         const reqBody = {
             interval: ctx.params.interval || 'day',
-            from_date: '2022-01-21T07:00:00.000Z',
-            to_date: '2022-06-21T07:00:00.000Z',
+            from_date: '2022-07-01T07:00:00.000Z',
+            to_date: '2022-07-11T07:00:00.000Z',
             stock_code: ctx.params.scrip.toUpperCase () || 'NIFTY',
             exchange_code: ctx.params.exch.toUpperCase () || 'NSE',
             product_type: ctx.params.type || 'cash',
-            expiry_date: '2022-06-23T07:00:00.000Z',
+            expiry_date: '2022-06-14T07:00:00.000Z',
             right: ctx.params.right || "",
             strike_price: ctx.params.strikePrice || "0"
         };

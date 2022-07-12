@@ -27,60 +27,59 @@ export class ScripChart implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit (): void {
-        console.log (this.ohlcData);
-
-        const canvasMargins = { ml: 150, mr: 20, mt: 20, mb: 100 };
-        const graphWidth = 600 - canvasMargins.ml - canvasMargins.mr;
-        const graphHeight = 300 - canvasMargins.mt - canvasMargins.mb;
+        // Sizes & Margins
+        const chartMargins = { ml: 100, mr: 10, mt: 10, mb: 100 };
+        const fullWidth = this.scripChartCanvasEl.nativeElement.getBoundingClientRect ().width;
+        const maxHeight = 500;
+        const graphWidth = fullWidth - chartMargins.ml - chartMargins.mr;
+        const graphHeight = maxHeight - chartMargins.mt - chartMargins.mb;
         const min: number = Number (d3.min (this.ohlcData, (d: any) => Number (d.volume)));
         const max: number = Number (d3.max (this.ohlcData, (d: any) => Number (d.volume)));
+        const dateExtent = <[Date, Date]>d3.extent (this.ohlcData, (d: any) =>  new Date (d.datetime));
 
-        const x = d3.scaleBand ()
-            .domain ((this.ohlcData.map ((d: any) => d.datetime)))
-            .range ([0, graphWidth])
-            .paddingInner (0.4);
-
+        // Scales
+        const x = d3.scaleTime ()
+            .domain (dateExtent)
+            .range ([0, graphWidth]);
         const y = d3.scaleLinear ()
             .domain ([0, Number (max)])
             .range ([graphHeight, 0]);
 
+        // SVG Canvas and Groups
         const chartSvgCanvas = d3.select (this.scripChartCanvasEl.nativeElement)
             .append ('svg')
-                .attr ('width', 600)
-                .attr ('height', 300);
-
-        // Group & Append
+                .attr ('width', fullWidth)
+                .attr ('height', maxHeight);
         const volChartGroup = chartSvgCanvas.append ('g')
             .attr ('width', graphWidth)
             .attr ('height', graphHeight)
-            .attr ('transform', `translate(${canvasMargins.ml})`);
+            .attr ('transform', `translate(${chartMargins.ml}, ${chartMargins.mt})`);
         const xAxisGroup = chartSvgCanvas.append ('g')
-            .attr ('transform', `translate(${canvasMargins.ml}, ${graphHeight})`);
+            .attr ('transform', `translate(${chartMargins.ml}, ${graphHeight + chartMargins.mt})`);
         const yAxisGroup = chartSvgCanvas.append ('g')
-            .attr ('transform', `translate(${canvasMargins.ml})`);
+            .attr ('transform', `translate(${chartMargins.ml}, ${chartMargins.mt})`);
 
-        // Pass Data to Chart
+        // Chart Data, Enter, Exit and Update methods
         const chartSvg = volChartGroup.selectAll ('svg')
             .data (this.ohlcData);
-
-        // Chart Enter methods
         chartSvg.enter ()
             .append ('rect')
-                .attr ('width', x.bandwidth)
-                .attr ('height', (d: any, i: number) => y (d.volume))
-                .attr ('x', (d: any, i: number) => Number (x (d.datetime)))
+                .attr ('width', 50)
+                .attr ('height', (d: any) => graphHeight - y (d.volume))
+                .attr ('x', (d: any) => x (new Date (d.datetime)) - 25)
+                .attr ('y', (d: any) => Number (y (d.volume)))
                 .attr ('fill', 'red');
 
-        const xAxis = d3.axisBottom (x)
-            .ticks (1);
+        // Axis
+        const xAxis = d3.axisBottom <Date>(x)
+            .ticks (d3.timeDay.every (1))
+            .tickFormat (d3.timeFormat ('%d %b'))
+            .tickValues(this.ohlcData.map ((d: any) => new Date (d.datetime)));
         const yAxis = d3.axisLeft (y)
-            .ticks (2)
-            .tickFormat ((d: any) => {
-                console.log (d);
-                return d;
-            });
+            .ticks (2);
 
-        xAxisGroup.call (xAxis);
+        xAxisGroup.call (xAxis)
+            .selectAll ('text');
         yAxisGroup.call (yAxis);
     }
 }

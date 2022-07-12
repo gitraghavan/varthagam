@@ -79,7 +79,8 @@
 						},
 						"development": {
 							"browserTarget": "varthagam:build:development",
-							"proxyConfig": "./src/proxy.conf.json"
+							"proxyConfig": "./src/proxy.conf.json",
+							"port": 2200
 						}
 					},
 					"defaultConfiguration": "development"
