@@ -9,8 +9,7 @@ import { debounceTime } from 'rxjs';
     styles: [`
         .va-ic-search-and-filter {
             padding: 8px 24px;
-            display: grid;
-            grid-template-rows: repeat (1fr);
+            display: flex;
             gap: 16px;
         }
         .va-ic-search-and-filter_form_search_inp {

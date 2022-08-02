@@ -14,6 +14,3 @@ export * from './services/itrade.session.service';
 export * from './services/details.service';
 export * from './services/charts.service';
 export * from './services/funds.service';
-
-// Factory Service
-export * from './services/ohlc.chart.service';
