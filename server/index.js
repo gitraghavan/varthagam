@@ -31,6 +31,7 @@ app.use (connectedRoutes.routes (), connectedRoutes.allowedMethods ());
 
 httpServer.listen (port, () => {
     console.log (`Application running on http://localhost:${env.port}`);
+    console.log ("Compiled successfully.");
 });
 
 // io.on ('connect', (socket) => {
