@@ -6,16 +6,16 @@ const router = new KoaRouter ({
     prefix: 'chart'
 });
 
-router.get ('/historicalcharts/:exch/:scrip', async (ctx, next) => {
+router.post ('/historicalcharts/:exch/:scrip', async (ctx, next) => {
     if (ctx.request.header.cookie) {
         const reqBody = {
-            interval: ctx.params.interval || 'day',
-            from_date: '2022-01-21T07:00:00.000Z',
-            to_date: '2022-06-21T07:00:00.000Z',
+            interval: ctx.request.body.interval || 'day',
+            from_date: ctx.request.body.from_date,
+            to_date: ctx.request.body.to_date,
             stock_code: ctx.params.scrip.toUpperCase () || 'NIFTY',
             exchange_code: ctx.params.exch.toUpperCase () || 'NSE',
             product_type: ctx.params.type || 'cash',
-            expiry_date: '2022-06-23T07:00:00.000Z',
+            expiry_date: ctx.request.body.exp_date,
             right: ctx.params.right || "",
             strike_price: ctx.params.strikePrice || "0"
         };

@@ -7,7 +7,7 @@ export class CookieAppService {
     getLoginCookies (): string {
         let allCookies = document.cookie.split ('; ');
         let cookiesObj = this.createCookieObject (allCookies);
-        return this.createLoginUrl ([cookiesObj.aurl, cookiesObj.vak]);
+        return this.createLoginUrl ([cookiesObj.aurl, encodeURIComponent (cookiesObj.vak)]);
     }
 
     createCookieObject (d: any): any {

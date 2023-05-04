@@ -26,9 +26,6 @@ export class DashboardComponent implements OnInit {
         this.holdings = this.activatedRoute.snapshot.data[0].holdings;
         this.funds = this.activatedRoute.snapshot.data[0].funds;
 
-        console.log (this.holdings);
-        console.log (this.funds);
-
         this.holdings.map ((v: any) => {
             return Math.round(v.change_percentage * 100) / 100;
         })

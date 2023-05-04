@@ -16,11 +16,11 @@
 @include theme($varthagam-light-theme);
 
 .dark-theme {
-    @include mat.all-component-colors($varthagam-dark-theme);
-    @include theme($varthagam-dark-theme);
+	@include mat.all-component-colors($varthagam-dark-theme);
+	@include theme($varthagam-dark-theme);
 
-    background-color: map.get($va-dark, 900);
-    color: #ffffff;
+	background-color: map.get($va-dark, 900);
+	color: #ffffff;
 }
 /* -------------------------------------------------------------------------------------------------------------------- */
 
@@ -30,3 +30,22 @@
 html, body { height: 100%; }
 body { margin: 0; font: 400 14px / 1.6em Roboto; }
 /* -------------------------------------------------------------------------------------------------------------------- */
+
+
+// Chart Global Styles
+.chart-axis {
+	opacity: 0.5;
+
+	& > .tick line {
+		stroke-opacity: 0.2;
+	}
+}
+
+/* With a touch of CSS for browsers who *
+ * implemented the r Geometry Property. */
+
+ @keyframes openYourHeart {from {r: 0} to {r: 60px}}
+
+ #myClip circle {
+	 animation: openYourHeart 15s infinite;
+ }

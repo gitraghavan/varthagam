@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { StorageServicesLocal } from '../../../../commonServices/index';
 
 @Component ({
     selector: 'itrade-holdings',
@@ -47,7 +50,13 @@ export class UserHoldings {
     @Input () holdingsTitle: any;
     @Input () holdings: any;
 
+    constructor (private route: Router, private activatedRoute: ActivatedRoute,
+        private storageServices: StorageServicesLocal) {
+        //
+    }
+
     navigateToChart (e: any) {
-        console.log (e);
+        this.storageServices.setSessionStorage ('exch', e.exchange_code);
+        this.route.navigate (['../chart', e.stock_code], {relativeTo: this.activatedRoute});
     }
 }
